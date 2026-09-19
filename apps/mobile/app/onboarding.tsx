@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Link, useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { COLORS, RADIUS } from '../../theme';
 
 export default function OnboardingScreen() {
   const router = useRouter();
@@ -39,9 +40,11 @@ export default function OnboardingScreen() {
           </Pressable>
         </Link>
 
-        <Text style={styles.disclaimer}>
-          Msingi provides civic and legal information for educational purposes. It is not a substitute for a lawyer or personalised legal representation.
-        </Text>
+        <View style={styles.disclaimerCard}>
+          <Text style={styles.disclaimer}>
+            Msingi provides civic and legal information for educational purposes. It is not a substitute for a lawyer or personalised legal representation.
+          </Text>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -50,17 +53,17 @@ export default function OnboardingScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F7F6F2',
+    backgroundColor: COLORS.background,
   },
   container: {
     flex: 1,
     justifyContent: 'center',
     paddingHorizontal: 24,
     paddingVertical: 32,
-    backgroundColor: '#F7F6F2',
+    backgroundColor: COLORS.background,
   },
   eyebrow: {
-    color: '#134E4A',
+    color: COLORS.primaryDark,
     fontSize: 22,
     fontWeight: '700',
     marginBottom: 12,
@@ -69,13 +72,13 @@ const styles = StyleSheet.create({
     fontSize: 34,
     lineHeight: 42,
     fontWeight: '700',
-    color: '#0F172A',
+    color: COLORS.text,
     marginBottom: 12,
   },
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#334155',
+    color: COLORS.textMuted,
     marginBottom: 28,
   },
   languageRow: {
@@ -85,28 +88,28 @@ const styles = StyleSheet.create({
   },
   languageButton: {
     flex: 1,
-    borderRadius: 12,
+    borderRadius: RADIUS.md,
     borderWidth: 1,
-    borderColor: '#D1D5DB',
+    borderColor: COLORS.border,
     paddingVertical: 12,
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.surface,
   },
   languageButtonActive: {
-    borderColor: '#0F766E',
-    backgroundColor: '#ECFDF5',
+    borderColor: COLORS.primarySoft,
+    backgroundColor: COLORS.surfaceMuted,
   },
   languageText: {
-    color: '#0F172A',
+    color: COLORS.primary,
     fontWeight: '600',
   },
   languageTextMuted: {
-    color: '#475569',
+    color: COLORS.textMuted,
     fontWeight: '600',
   },
   primaryButton: {
-    backgroundColor: '#0F766E',
-    borderRadius: 14,
+    backgroundColor: COLORS.primary,
+    borderRadius: RADIUS.md,
     paddingVertical: 16,
     alignItems: 'center',
     marginBottom: 12,
@@ -117,21 +120,28 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   secondaryButton: {
-    borderRadius: 14,
+    borderRadius: RADIUS.md,
     paddingVertical: 16,
     alignItems: 'center',
     borderWidth: 1,
-    borderColor: '#CBD5E1',
-    backgroundColor: '#FFFFFF',
+    borderColor: COLORS.border,
+    backgroundColor: COLORS.surface,
   },
   secondaryButtonText: {
-    color: '#0F172A',
+    color: COLORS.text,
     fontWeight: '600',
   },
-  disclaimer: {
+  disclaimerCard: {
     marginTop: 28,
+    backgroundColor: COLORS.surfaceSoft,
+    borderRadius: RADIUS.lg,
+    borderWidth: 1,
+    borderColor: COLORS.border,
+    padding: 16,
+  },
+  disclaimer: {
     fontSize: 13,
     lineHeight: 20,
-    color: '#475569',
+    color: COLORS.textMuted,
   },
 });

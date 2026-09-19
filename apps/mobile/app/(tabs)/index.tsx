@@ -2,6 +2,7 @@ import { Link } from 'expo-router';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import { COLORS, RADIUS } from '../../theme';
 
 const categories = [
   { name: 'Police & Arrests', slug: 'police-arrests', emoji: '🚔' },
@@ -19,7 +20,7 @@ export default function HomeScreen() {
           <View style={styles.headerActions}>
             <Text style={styles.languagePill}>English</Text>
             <Pressable accessibilityLabel="Read aloud" style={styles.audioButton}>
-              <Ionicons name="volume-medium-outline" size={18} color="#0F172A" />
+              <Ionicons name="volume-medium-outline" size={18} color={COLORS.text} />
             </Pressable>
           </View>
         </View>
@@ -28,10 +29,10 @@ export default function HomeScreen() {
         <Text style={styles.subtitle}>Understand what the law says about everyday situations.</Text>
 
         <View style={styles.searchWrap}>
-          <Ionicons name="search-outline" size={18} color="#64748B" style={styles.searchIcon} />
+          <Ionicons name="search-outline" size={18} color={COLORS.textMuted} style={styles.searchIcon} />
           <TextInput
             placeholder="What’s happening?"
-            placeholderTextColor="#64748B"
+            placeholderTextColor={COLORS.textMuted}
             style={styles.searchInput}
             value="Police want to search me"
             editable={true}
@@ -56,7 +57,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  safeArea: { flex: 1, backgroundColor: '#F7F6F2' },
+  safeArea: { flex: 1, backgroundColor: COLORS.background },
   container: { paddingHorizontal: 20, paddingTop: 16, paddingBottom: 40 },
   headerRow: {
     flexDirection: 'row',
@@ -64,64 +65,64 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
   },
-  brand: { fontSize: 28, fontWeight: '700', color: '#0F172A' },
+  brand: { fontSize: 28, fontWeight: '700', color: COLORS.text },
   headerActions: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   languagePill: {
-    backgroundColor: '#ECFDF5',
-    borderRadius: 999,
+    backgroundColor: COLORS.surfaceMuted,
+    borderRadius: RADIUS.pill,
     paddingHorizontal: 10,
     paddingVertical: 6,
-    color: '#0F766E',
+    color: COLORS.primary,
     fontSize: 12,
     fontWeight: '600',
   },
   audioButton: {
     width: 36,
     height: 36,
-    borderRadius: 18,
-    backgroundColor: '#FFFFFF',
+    borderRadius: RADIUS.pill,
+    backgroundColor: COLORS.surface,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: COLORS.border,
   },
   title: {
     fontSize: 28,
     fontWeight: '700',
     lineHeight: 36,
-    color: '#0F172A',
+    color: COLORS.text,
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
     lineHeight: 24,
-    color: '#475569',
+    color: COLORS.textMuted,
     marginBottom: 20,
   },
   searchWrap: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
+    backgroundColor: COLORS.surface,
+    borderRadius: RADIUS.lg,
     paddingHorizontal: 12,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: COLORS.border,
     marginBottom: 24,
   },
   searchIcon: { marginRight: 8 },
-  searchInput: { flex: 1, fontSize: 16, color: '#0F172A' },
-  sectionTitle: { fontSize: 18, fontWeight: '700', color: '#0F172A', marginBottom: 14 },
+  searchInput: { flex: 1, fontSize: 16, color: COLORS.text },
+  sectionTitle: { fontSize: 18, fontWeight: '700', color: COLORS.text, marginBottom: 14 },
   categoryGrid: { gap: 12 },
   categoryCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 18,
+    backgroundColor: COLORS.surface,
+    borderRadius: RADIUS.xl,
     padding: 18,
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: COLORS.border,
     flexDirection: 'row',
     alignItems: 'center',
   },
   categoryEmoji: { fontSize: 28, marginRight: 14 },
-  categoryName: { fontSize: 17, color: '#0F172A', fontWeight: '600' },
+  categoryName: { fontSize: 17, color: COLORS.text, fontWeight: '600' },
 });
