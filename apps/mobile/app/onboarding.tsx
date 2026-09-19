@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Link, useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { COLORS, RADIUS } from '../../theme';
+import { COLORS, RADIUS } from '../theme';
 
 export default function OnboardingScreen() {
   const router = useRouter();

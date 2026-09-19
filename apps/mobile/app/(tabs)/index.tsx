@@ -1,4 +1,5 @@
-import { Link } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
+import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,6 +13,9 @@ const categories = [
 ];
 
 export default function HomeScreen() {
+  const router = useRouter();
+  const [query, setQuery] = useState('');
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -30,12 +34,16 @@ export default function HomeScreen() {
 
         <View style={styles.searchWrap}>
           <Ionicons name="search-outline" size={18} color={COLORS.textMuted} style={styles.searchIcon} />
-          <TextInput
+            <TextInput
             placeholder="What’s happening?"
             placeholderTextColor={COLORS.textMuted}
             style={styles.searchInput}
-            value="Police want to search me"
-            editable={true}
+              value={query}
+              onChangeText={setQuery}
+              returnKeyType="search"
+              onSubmitEditing={() => {
+                if (query.trim()) router.push(`/search?query=${encodeURIComponent(query.trim())}`);
+              }}
           />
         </View>
 

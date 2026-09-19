@@ -1,25 +1,70 @@
 import { useLocalSearchParams } from 'expo-router';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { fetchLegalSource } from '../../services/api';
+
+type LegalSourceScreenData = {
+  id: string;
+  title: string;
+  officialUrl: string;
+  sections: Array<{
+    id: string;
+    reference: string;
+    title: string;
+    legalText: string;
+  }>;
+};
 
 export default function LegalSourceScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
+  const [source, setSource] = useState<LegalSourceScreenData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      if (!id) {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const data = await fetchLegalSource(String(id));
+        setSource(data);
+      } catch (error) {
+        console.warn('Failed to load legal source', error);
+        setSource(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    load();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}><ActivityIndicator size="small" color="#013428" /></View>
+      </SafeAreaView>
+    );
+  }
+
+  const section = source?.sections?.[0];
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Original law</Text>
-        <Text style={styles.source}>Constitution of Kenya, 2010</Text>
-        <Text style={styles.reference}>Article 49</Text>
-        <Text style={styles.body}>
-          {[VERIFIED LEGAL TEXT TO BE INSERTED]}
-        </Text>
+        <Text style={styles.source}>{source?.title ?? 'Source unavailable'}</Text>
+        <Text style={styles.reference}>{section?.reference ?? 'Verified source unavailable'}</Text>
+        <Text style={styles.body}>{section?.legalText ?? 'The verified legal source could not be loaded. Connect to the API and try again.'}</Text>
 
         <View style={styles.metaSection}>
           <Text style={styles.metaLabel}>Official source</Text>
-          <Text style={styles.metaValue}>Kenya Law / Constitution</Text>
+          <Text style={styles.metaValue}>{source?.officialUrl ?? 'Unavailable'}</Text>
           <Text style={styles.metaLabel}>Last verified</Text>
-          <Text style={styles.metaValue}>01 January 2025</Text>
+          <Text style={styles.metaValue}>{source ? 'Verified source metadata' : 'Unavailable'}</Text>
         </View>
       </ScrollView>
     </SafeAreaView>

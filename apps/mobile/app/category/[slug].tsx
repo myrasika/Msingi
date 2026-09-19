@@ -1,12 +1,43 @@
 import { Link, useLocalSearchParams } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getCategoryBySlug, getSituationBySlug, situationsByCategory } from '../../services/mockData';
+import { fetchCategoryBySlug } from '../../services/api';
+import type { ApiCategory, ApiSituation } from '../../services/api';
 
 export default function CategoryScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
-  const category = getCategoryBySlug(slug ?? '');
-  const situations = slug ? situationsByCategory[slug] ?? [] : [];
+  const [category, setCategory] = useState<ApiCategory | null>(null);
+  const [situations, setSituations] = useState<ApiSituation[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadCategory = async () => {
+      if (!slug) return;
+
+      try {
+        const data = await fetchCategoryBySlug(String(slug));
+        setCategory(data);
+        setSituations(data.situations ?? []);
+      } catch (error) {
+        console.warn('Failed to load category', error);
+        setCategory(null);
+        setSituations([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCategory();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}><ActivityIndicator size="small" color="#013428" /></View>
+      </SafeAreaView>
+    );
+  }
 
   if (!category) {
     return (

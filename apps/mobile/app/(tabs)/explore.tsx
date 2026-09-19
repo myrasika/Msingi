@@ -1,19 +1,43 @@
 import { Link } from 'expo-router';
-import { ScrollView, StyleSheet, Text, View, Pressable } from 'react-native';
+import { useEffect, useState } from 'react';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View, Pressable } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { categories } from '../../services/mockData';
+import { fetchCategories } from '../../services/api';
+import type { ApiCategory } from '../../services/api';
 
 export default function ExploreScreen() {
+  const [categories, setCategories] = useState<ApiCategory[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const data = await fetchCategories();
+        setCategories(data);
+      } catch (error) {
+        console.warn('Failed to load categories', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    load();
+  }, []);
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Explore</Text>
         <Text style={styles.subtitle}>Browse the verified civic guidance available in Msingi.</Text>
 
+        {loading ? (
+          <ActivityIndicator size="small" color="#013428" />
+        ) : null}
+
         {categories.map((category) => (
           <Link key={category.slug} href={`/category/${category.slug}`} asChild>
             <Pressable style={styles.card}>
-              <Text style={styles.icon}>{category.icon}</Text>
+              <Text style={styles.icon}>{category.icon || '📘'}</Text>
               <View style={styles.cardTextWrap}>
                 <Text style={styles.cardTitle}>{category.name}</Text>
                 <Text style={styles.cardDescription}>{category.description}</Text>

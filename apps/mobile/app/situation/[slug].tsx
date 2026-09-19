@@ -1,11 +1,61 @@
 import { useLocalSearchParams } from 'expo-router';
-import { ScrollView, Pressable, StyleSheet, Text, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import * as Speech from 'expo-speech';
+import { ActivityIndicator, ScrollView, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { getSituationBySlug } from '../../services/mockData';
+import { fetchSavedSituations, fetchSituationBySlug, saveSituation, deleteSavedSituation } from '../../services/api';
+import type { ApiSituation } from '../../services/api';
 
 export default function SituationScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
-  const situation = getSituationBySlug(slug ?? '');
+  const [situation, setSituation] = useState<ApiSituation | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    const load = async () => {
+      if (!slug) return;
+
+      try {
+        const data = await fetchSituationBySlug(String(slug));
+        setSituation(data);
+
+        const savedItems = await fetchSavedSituations();
+        setSaved(savedItems.some((entry) => entry.situation.slug === String(slug)));
+      } catch (error) {
+        console.warn('Failed to load situation', error);
+        setSituation(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    load();
+  }, [slug]);
+
+  const toggleSaved = async () => {
+    if (!situation) return;
+
+    try {
+      if (saved) {
+        await deleteSavedSituation(situation.id);
+        setSaved(false);
+      } else {
+        await saveSituation(situation.id);
+        setSaved(true);
+      }
+    } catch (error) {
+      console.warn('Failed to update saved state', error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}><ActivityIndicator size="small" color="#013428" /></View>
+      </SafeAreaView>
+    );
+  }
 
   if (!situation) {
     return (
@@ -21,6 +71,10 @@ export default function SituationScreen() {
         <Text style={styles.badge}>You have rights</Text>
         <Text style={styles.title}>{situation.title}</Text>
         <Text style={styles.overview}>The Constitution protects your rights when you are dealing with this situation. Here is what you need to know.</Text>
+
+        <Pressable style={saved ? styles.savedButton : styles.saveButton} onPress={toggleSaved}>
+          <Text style={saved ? styles.savedButtonText : styles.saveButtonText}>{saved ? 'Saved' : 'Save this situation'}</Text>
+        </Pressable>
 
         {situation.explanation && (
           <View style={styles.section}>
@@ -39,7 +93,7 @@ export default function SituationScreen() {
             <View key={section.id} style={styles.sourceBox}>
               <Text style={styles.sourceHeader}>{section.reference}</Text>
               <Text style={styles.sourceTitle}>{section.title}</Text>
-              <Text style={styles.body}>{section.legalText}</Text>
+              <Text style={styles.body}>{section.legalText || 'Legal text is not yet populated in the database.'}</Text>
             </View>
           ))}
         </View>
@@ -57,7 +111,17 @@ export default function SituationScreen() {
           ))}
         </View>
 
-        <Pressable style={styles.primaryButton}>
+        <Pressable
+          style={styles.primaryButton}
+          onPress={() => {
+            const explanation = situation.explanation?.explanation ?? '';
+            const sourceText = situation.legalSections.map((section) => section.legalText).join(' ');
+            Speech.stop();
+            Speech.speak(`${situation.title}. ${explanation} ${sourceText}`, { language: 'en-KE' });
+          }}
+          accessibilityRole="button"
+          accessibilityLabel="Read this guidance aloud"
+        >
           <Text style={styles.primaryButtonText}>Read aloud</Text>
         </Pressable>
       </ScrollView>
@@ -97,6 +161,22 @@ const styles = StyleSheet.create({
   stepNumber: { fontSize: 16, fontWeight: '700', color: '#0F766E', marginTop: 2 },
   actionTitle: { fontSize: 16, fontWeight: '700', color: '#0F172A' },
   actionDescription: { fontSize: 14, lineHeight: 20, color: '#475569', marginTop: 4 },
+  saveButton: {
+    backgroundColor: '#ECFDF5',
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#C7E7D5',
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  savedButton: {
+    backgroundColor: '#013428',
+    borderRadius: 12,
+    paddingVertical: 10,
+    alignItems: 'center',
+  },
+  saveButtonText: { color: '#013428', fontWeight: '700' },
+  savedButtonText: { color: '#FFFFFF', fontWeight: '700' },
   primaryButton: {
     backgroundColor: '#0F766E',
     borderRadius: 14,
