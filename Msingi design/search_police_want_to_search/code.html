@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_stack" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-fixed-variant": "#3f4945", "surface": "#f1fcf7", "on-surface": "#141e1b", "primary": "#013428", "surface-tint": "#3b6758", "on-secondary-fixed-variant": "#344c41", "on-error-container": "#93000a", "error-container": "#ffdad6", "tertiary": "#262f2b", "on-primary-container": "#8cbaa9", "surface-variant": "#dae5e0", "on-surface-variant": "#404945", "tertiary-container": "#3c4541", "secondary": "#4b6458", "on-tertiary-container": "#a8b2ad", "surface-container-highest": "#dae5e0", "on-error": "#ffffff", "tertiary-fixed": "#dbe5df", "surface-container-lowest": "#ffffff", "secondary-container": "#cbe6d7", "inverse-primary": "#a1d0bf", "on-secondary": "#ffffff", "on-tertiary": "#ffffff", "outline-variant": "#c0c8c3", "tertiary-fixed-dim": "#bfc9c3", "surface-container-high": "#dfebe6", "on-primary-fixed-variant": "#224e41", "on-background": "#141e1b", "background": "#f1fcf7", "outline": "#717975", "error": "#ba1a1a", "on-primary-fixed": "#002018", "primary-container": "#1e4b3e", "inverse-surface": "#28332f", "surface-dim": "#d1ddd8", "secondary-fixed-dim": "#b2cdbe", "on-tertiary-fixed": "#151d1a", "primary-fixed-dim": "#a1d0bf", "on-secondary-container": "#50685c", "surface-container": "#e5f0eb", "primary-fixed": "#bdeddb", "inverse-on-surface": "#e8f3ee", "surface-bright": "#f1fcf7", "on-primary": "#ffffff", "on-secondary-fixed": "#082017", "surface-container-low": "#ebf6f1", "secondary-fixed": "#cee9da" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xs": "0.25rem", "space-md": "1rem", "gutter": "1rem", "margin": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem" }, fontFamily: { "headline-lg": ["Public Sans"], "body-md": ["Public Sans"], "body-sm": ["Public Sans"], "display-lg": ["Public Sans"], "title-md": ["Public Sans"], "headline-sm": ["Public Sans"], "label-md": ["Public Sans"], "body-lg": ["Public Sans"], "label-sm": ["Public Sans"] }, fontSize: { "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0.01em", "fontWeight": "400" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "400" }], "display-lg": ["30px", { "lineHeight": "38px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-sm": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "0.01em", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.02em", "fontWeight": "500" }] } } } };</script><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#f1fcf7;color:#141e1b;overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}}::-webkit-scrollbar{display:none;}</style><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-20 px-space-md flex flex-col justify-center gap-1"><div class="flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm px-1"><span>9:41</span><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[14px]">signal_cellular_alt</span><span class="material-symbols-outlined text-[14px]">wifi</span><span class="material-symbols-outlined text-[16px]">battery_full</span></div></div><div class="flex items-center justify-between gap-2"><div class="flex items-center gap-2 min-w-0"><button aria-label="Back" class="w-9 h-9 flex items-center justify-center rounded-full text-primary hover:bg-surface-container transition-colors" onclick="history.back()" type="button"><span class="material-symbols-outlined text-[24px]">arrow_back</span></button><img alt="Msingi Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1XqZpX9NsHTRhdsxnJwYuSmIb6gddqmZbrEktrxzD80yVK1kEeE5tSaaz_Yz9UEXFi6H2Q8j5EVBTHxqPmCyUxCVM4WcJVgfRH1-02wseEmEyDKi290MdCs3S7hzh0SPTfPki5ji3HFKqNHDJfjmWGKbIONx5K2hthUvDF_uBRf2x4MyLpllSzL6z1O2WAxoxyAABAKZ3Wf5yUU1WhoHNwnkhYf7iycw00637Y6Izn1Y8zfh5BLF9hd6w"/><h1 class="font-headline-sm text-headline-sm text-primary tracking-tight truncate leading-none">Scenario Guide Detail</h1></div><div class="flex items-center gap-1.5 shrink-0"><button aria-label="Read aloud" class="h-9 w-9 flex items-center justify-center rounded-full bg-surface-container text-primary hover:bg-secondary-container transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">volume_up</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-20 pb-safe bg-surface"><div class="flex flex-col w-full px-margin pb-space-xl gap-space-lg">
+<!-- Active Interactive Search Shell with micro-state controls -->
+<section class="flex flex-col gap-space-xs mt-space-sm">
+<div class="relative flex items-center bg-surface-container-lowest rounded-xl shadow-sm px-space-md py-2.5 transition-all focus-within:shadow-md">
+<span class="material-symbols-outlined text-primary text-[22px] shrink-0 mr-space-sm" style="font-variation-settings: 'FILL' 1;">manage_search</span>
+<input aria-label="Legal scenario search query" class="w-full bg-transparent font-body-md text-body-md text-on-surface focus:outline-none placeholder:text-outline truncate pr-space-md" id="scenario-search" placeholder="Describe what's happening..." type="text" value="Police want to search my house"/>
+<div class="flex items-center gap-1 shrink-0 ml-auto">
+<button aria-label="Clear search text" class="w-7 h-7 flex items-center justify-center rounded-full text-on-surface-variant hover:bg-surface-container active:scale-95 transition-transform" id="clear-search-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">cancel</span>
+</button>
+<button aria-label="Listen or voice search" class="w-8 h-8 flex items-center justify-center rounded-full bg-secondary-container text-on-secondary-container hover:bg-primary hover:text-on-primary active:scale-95 transition-all shadow-xs" id="voice-search-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">mic</span>
+</button>
+</div>
+</div>
+<!-- Live Validation Context / Match Barometer -->
+<div class="flex items-center justify-between px-1">
+<div class="flex items-center gap-1.5 text-on-surface-variant font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span>Semantic Match Engine: <strong class="text-primary font-semibold">Live</strong></span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Verified Constitution v2010</span>
+</div>
+</section>
+<!-- Reassurance & Confidence Status Notice -->
+<section class="flex items-start gap-space-sm bg-surface-container-low rounded-xl p-space-md shadow-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<p class="font-title-md text-title-md text-on-surface">Match confirmed</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">We found verified constitutional legal protections that directly match your situation.</p>
+</div>
+</section>
+<!-- Screen 09: Primary Matched Card with Depth & Visual Anchor -->
+<article class="flex flex-col bg-surface-container-lowest rounded-xl shadow-md overflow-hidden relative group">
+<!-- Visual Image Anchor for Property/Home Rights -->
+<div class="relative w-full h-36 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A warm, grounded scene of an urban Kenyan wooden entryway and doorway illuminated by peaceful natural morning sunlight, evoking the inviolable sanctity, legal privacy, and safety of home in deep forest green and soft cream hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5XRuzwZP0ZtDnBSp0vF8JdUTQ99AEXoGSfQkJUtfRFVe-XtBI5krk1XzNRVXn7qFjB_iiaiXIJSj-22dLL6hOsMDQlycHQPSnPdlUE-E4YP5A9wyJLqeQK9WHjUwR2R1AJ0z69Cv4O2saxSWw20N36PLYLLp1PSbyFTndDeGV6b8KzJIWdo-0mVBOY5HKsAwz7V8A-gNEbgpLVCr1oxPzpPML7sqwRAs4pFG0uCg2m9k3BEZg0B28"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-surface-container-lowest/40 to-transparent"></div>
+<!-- Category Badge overlay -->
+<div class="absolute top-space-md left-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-md text-label-md shadow-sm">
+<span>🚔</span>
+<span>Police &amp; Arrests</span>
+</span>
+</div>
+<div class="absolute bottom-2 right-space-md">
+<span class="inline-flex items-center gap-1 text-primary bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm px-2 py-0.5 rounded-full">
+<span class="material-symbols-outlined text-[13px]">gavel</span> 98% Match
+        </span>
+</div>
+</div>
+<!-- Core Card Details -->
+<div class="flex flex-col p-space-md gap-space-sm">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold tracking-tight">
+        Police want to search me or my home
+      </h2>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-3">
+        Understand the legal protections that apply to bodily and property searches under Article 31 (Privacy) and Criminal Procedure Code.
+      </p>
+<!-- Statutory Fast Reference Chips -->
+<div class="flex flex-wrap gap-1.5 pt-1">
+<span class="px-2 py-0.5 rounded-md bg-surface-container font-label-sm text-label-sm text-primary">
+          Art. 31 Right to Privacy
+        </span>
+<span class="px-2 py-0.5 rounded-md bg-surface-container font-label-sm text-label-sm text-on-secondary-container">
+          Search Warrant Rules
+        </span>
+</div>
+<!-- Action Primary CTA button -->
+<div class="pt-space-xs mt-space-xs">
+<a class="flex items-center justify-between w-full bg-primary-container text-on-primary rounded-lg px-space-md py-3 font-title-md text-title-md hover:bg-primary active:scale-[0.99] transition-all shadow-sm" href="#scenario-guide-detail">
+<span>Read situation guide</span>
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:translate-x-1">arrow_forward</span>
+</a>
+</div>
+</div>
+</article>
+<!-- Screen 10: "Which is closest?" Low-Confidence & Disambiguation Cluster -->
+<section class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">alt_route</span>
+<h3 class="font-title-md text-title-md text-on-surface">Not quite right? Which is closest?</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Related paths</span>
+</div>
+<div class="flex flex-col gap-2">
+<!-- Alternate 1 -->
+<button class="flex items-center justify-between w-full text-left p-space-md bg-surface-container-lowest hover:bg-surface-container rounded-xl shadow-xs transition-colors group" type="button">
+<div class="flex items-center gap-space-sm min-w-0 pr-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">lock</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-title-md text-on-surface truncate">I've been arrested</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Article 49 rights, bail guarantees &amp; 24-hour presentation rule</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] shrink-0 group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<!-- Alternate 2 -->
+<button class="flex items-center justify-between w-full text-left p-space-md bg-surface-container-lowest hover:bg-surface-container rounded-xl shadow-xs transition-colors group" type="button">
+<div class="flex items-center gap-space-sm min-w-0 pr-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">domain_disabled</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-title-md text-on-surface truncate">I'm being detained in cells</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Access to family, counsel, sanitation, and humane conditions</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] shrink-0 group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<!-- Alternate 3 -->
+<button class="flex items-center justify-between w-full text-left p-space-md bg-surface-container-lowest hover:bg-surface-container rounded-xl shadow-xs transition-colors group" type="button">
+<div class="flex items-center gap-space-sm min-w-0 pr-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary shrink-0 group-hover:bg-secondary-container transition-colors">
+<span class="material-symbols-outlined text-[18px]">record_voice_over</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-md text-title-md text-on-surface truncate">Police are questioning me</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant truncate">Right to silence, non-self incrimination, and legal representation</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] shrink-0 group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+</div>
+</section>
+<!-- Visual Human Illustration Placeholder: Civic Legal Empowerment -->
+<div class="relative w-full rounded-xl overflow-hidden bg-surface-container p-space-md flex items-center gap-space-md shadow-xs">
+<div class="w-20 h-20 shrink-0 rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An approachable, candid portrait illustration of a Kenyan paralegal consultant holding a notebook and smiling warmly, framed with botanical green accents and gentle natural light representing accessible community justice." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzVDsx11I_oTBEGEo96WzO4YeFyiZbFHnXS80hAUjs7HQWhVbhuNuWMrM-TWQYOl3SMZyMa2LBcaQe9oesofv4WxIb8bJUm1_jnlmcDbq6z_EpYS3KQDALteUVtx976Eu4gXSW7N4F6yKJXylSYuNPZQAnZoPXwajoOtVFSLHuCa0uh2hcGWv1ulUnYHU4eBd6-JD9u_MrKDrNEMgtJMrNyyu35idO32djrNKm3cVUdIPHfYVHuE0B"/>
+</div>
+<div class="flex flex-col min-w-0 gap-1">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]">health_and_safety</span>
+<span class="font-label-md text-label-md uppercase tracking-wider font-semibold">Zero-Guess Standard</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface leading-snug">
+        Msingi only cites ratified laws. No synthetic guessing or outdated precedents.
+      </p>
+</div>
+</div>
+<!-- "No verified info? We don't guess" Assurance Banner -->
+<section class="flex flex-col bg-surface-container-high rounded-xl p-space-md gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<div class="w-7 h-7 rounded-full bg-primary flex items-center justify-center text-on-primary shrink-0">
+<span class="material-symbols-outlined text-[16px]">balance</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">No verified info? We don't guess.</h4>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+      If your unique case falls outside codified statutes, we immediately pair you with real, accredited legal aid societies across Kenya.
+    </p>
+<div class="flex items-center justify-start pt-1">
+<a class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-lowest text-primary font-title-md text-title-md shadow-xs hover:bg-secondary-container transition-colors" href="#find-legal-help">
+<span class="material-symbols-outlined text-[18px]">support_agent</span>
+<span>Find Legal Help</span>
+<span class="material-symbols-outlined text-[16px]">north_east</span>
+</a>
+</div>
+</section>
+<!-- Real Search Examples Chips -->
+<section class="flex flex-col gap-space-xs pt-space-xs">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider px-1">
+      Popular Real Searches
+    </span>
+<div class="flex flex-wrap gap-2">
+<button class="search-pill-btn flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest hover:bg-secondary-container active:scale-95 rounded-full text-on-surface font-body-sm text-body-sm shadow-xs transition-all text-left" data-query="My employer hasn't paid me" type="button">
+<span class="material-symbols-outlined text-secondary text-[16px]">payments</span>
+<span>My employer hasn't paid me</span>
+</button>
+<button class="search-pill-btn flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest hover:bg-secondary-container active:scale-95 rounded-full text-on-surface font-body-sm text-body-sm shadow-xs transition-all text-left" data-query="Someone is claiming my land" type="button">
+<span class="material-symbols-outlined text-secondary text-[16px]">landscape</span>
+<span>Someone is claiming my land</span>
+</button>
+<button class="search-pill-btn flex items-center gap-1.5 px-3 py-2 bg-surface-container-lowest hover:bg-secondary-container active:scale-95 rounded-full text-on-surface font-body-sm text-body-sm shadow-xs transition-all text-left" data-query="Police stopped me" type="button">
+<span class="material-symbols-outlined text-secondary text-[16px]">pan_tool</span>
+<span>Police stopped me</span>
+</button>
+</div>
+</section>
+</div>
+<script>
+  (function() {
+    const searchInput = document.getElementById('scenario-search');
+    const clearBtn = document.getElementById('clear-search-btn');
+    const voiceBtn = document.getElementById('voice-search-btn');
+    const pillButtons = document.querySelectorAll('.search-pill-btn');
+
+    if (clearBtn && searchInput) {
+      clearBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        searchInput.focus();
+      });
+    }
+
+    if (pillButtons && searchInput) {
+      pillButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+          const query = this.getAttribute('data-query');
+          if (query) {
+            searchInput.value = query;
+            searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            searchInput.focus();
+          }
+        });
+      });
+    }
+
+    if (voiceBtn) {
+      let listening = false;
+      voiceBtn.addEventListener('click', function() {
+        listening = !listening;
+        if (listening) {
+          this.classList.add('bg-error', 'text-on-error');
+          this.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+        } else {
+          this.classList.remove('bg-error', 'text-on-error');
+          this.classList.add('bg-secondary-container', 'text-on-secondary-container');
+        }
+      });
+    }
+  })();
+</script></main></body></html>
