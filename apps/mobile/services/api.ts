@@ -83,7 +83,7 @@ export type SearchResult = {
 export const DEVICE_ID_KEY = 'msingi-device-id';
 
 export const API_BASE_URL =
-  process.env.EXPO_PUBLIC_API_URL ?? (Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://localhost:3000');
+  process.env.EXPO_PUBLIC_API_URL ?? (Platform.OS === 'android' ? 'http://10.0.2.2:3000' : 'http://127.0.0.1:3000');
 
 export async function getOrCreateDeviceId() {
   const existing = await AsyncStorage.getItem(DEVICE_ID_KEY);

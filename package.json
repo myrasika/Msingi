@@ -11,10 +11,12 @@
     "react-dom": "19.1.0"
   },
   "scripts": {
-    "api": "npm run dev --workspace=apps/api",
+    "api": "cd apps/api && npm run dev",
     "mobile": "cd apps/mobile && expo start",
     "build:api": "npm run build --workspace=apps/api",
     "db:generate": "npm run db:generate --workspace=apps/api",
+    "db:demo:start": "docker compose -f docker-compose.demo.yml up -d postgres",
+    "db:demo:stop": "docker compose -f docker-compose.demo.yml down",
     "db:migrate": "npm run db:migrate --workspace=apps/api",
     "db:seed": "npm run db:seed --workspace=apps/api",
     "db:studio": "npm run db:studio --workspace=apps/api"

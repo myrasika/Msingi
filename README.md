@@ -19,6 +19,15 @@ cp apps/api/.env.example apps/api/.env
 
 Update `apps/api/.env` so `DATABASE_URL` points to a local PostgreSQL database named `msingi_dev`.
 
+For a disposable demo database with Docker:
+
+```sh
+cp apps/api/.env.example apps/api/.env
+npm run db:demo:start
+```
+
+The demo database uses `postgres` / `password` and persists in the `msingi-postgres-demo` Docker volume. Remove it completely with `npm run db:demo:stop` followed by `docker volume rm msingi_msingi-postgres-demo` if you want a fresh database.
+
 Initialize and seed the database:
 
 ```sh

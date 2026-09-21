@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: msingi-postgres-demo
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: msingi_dev
+    ports:
+      - "5432:5432"
+    volumes:
+      - msingi-postgres-demo:/var/lib/postgresql/data
+
+volumes:
+  msingi-postgres-demo:
