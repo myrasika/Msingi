@@ -2,6 +2,7 @@ import { useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/BackButton';
 import { fetchLegalSource } from '../../services/api';
 
 type LegalSourceScreenData = {
@@ -55,6 +56,7 @@ export default function LegalSourceScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
+        <BackButton />
         <Text style={styles.title}>Original law</Text>
         <Text style={styles.source}>{source?.title ?? 'Source unavailable'}</Text>
         <Text style={styles.reference}>{section?.reference ?? 'Verified source unavailable'}</Text>

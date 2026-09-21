@@ -2,6 +2,7 @@ import { Link, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../components/BackButton';
 import { searchSituations } from '../services/api';
 import type { ApiSituation } from '../services/api';
 
@@ -52,6 +53,7 @@ export default function SearchScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
+        <BackButton />
         <Text style={styles.title}>Search</Text>
         <View style={styles.searchWrap}>
           <TextInput

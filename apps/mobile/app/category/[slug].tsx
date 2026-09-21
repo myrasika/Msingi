@@ -2,6 +2,7 @@ import { Link, useLocalSearchParams } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/BackButton';
 import { fetchCategoryBySlug } from '../../services/api';
 import type { ApiCategory, ApiSituation } from '../../services/api';
 import { getCategoryBySlug, situationsByCategory } from '../../services/mockData';
@@ -52,6 +53,7 @@ export default function CategoryScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
+        <BackButton />
         <Text style={styles.eyebrow}>{category.icon} {category.name}</Text>
         <Text style={styles.title}>{category.name}</Text>
         <Text style={styles.description}>{category.description}</Text>

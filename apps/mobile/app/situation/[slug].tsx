@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import * as Speech from 'expo-speech';
 import { ActivityIndicator, ScrollView, Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { BackButton } from '../../components/BackButton';
 import { fetchSavedSituations, fetchSituationBySlug, saveSituation, deleteSavedSituation } from '../../services/api';
 import type { ApiSituation } from '../../services/api';
 import { getSituationBySlug } from '../../services/mockData';
@@ -69,6 +70,7 @@ export default function SituationScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <ScrollView contentContainerStyle={styles.container}>
+        <BackButton />
         <Text style={styles.badge}>You have rights</Text>
         <Text style={styles.title}>{situation.title}</Text>
         <Text style={styles.overview}>The Constitution protects your rights when you are dealing with this situation. Here is what you need to know.</Text>
