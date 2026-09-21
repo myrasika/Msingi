@@ -4,6 +4,7 @@ import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchCategoryBySlug } from '../../services/api';
 import type { ApiCategory, ApiSituation } from '../../services/api';
+import { getCategoryBySlug, situationsByCategory } from '../../services/mockData';
 
 export default function CategoryScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -21,8 +22,9 @@ export default function CategoryScreen() {
         setSituations(data.situations ?? []);
       } catch (error) {
         console.warn('Failed to load category', error);
-        setCategory(null);
-        setSituations([]);
+        const bundledCategory = getCategoryBySlug(String(slug));
+        setCategory(bundledCategory);
+        setSituations(situationsByCategory[String(slug)] ?? []);
       } finally {
         setLoading(false);
       }

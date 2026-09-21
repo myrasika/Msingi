@@ -5,6 +5,7 @@ import { ActivityIndicator, ScrollView, Pressable, StyleSheet, Text, View } from
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchSavedSituations, fetchSituationBySlug, saveSituation, deleteSavedSituation } from '../../services/api';
 import type { ApiSituation } from '../../services/api';
+import { getSituationBySlug } from '../../services/mockData';
 
 export default function SituationScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -24,7 +25,7 @@ export default function SituationScreen() {
         setSaved(savedItems.some((entry) => entry.situation.slug === String(slug)));
       } catch (error) {
         console.warn('Failed to load situation', error);
-        setSituation(null);
+        setSituation(getSituationBySlug(String(slug)));
       } finally {
         setLoading(false);
       }

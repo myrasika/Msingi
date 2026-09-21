@@ -4,6 +4,7 @@ import { ActivityIndicator, ScrollView, StyleSheet, Text, View, Pressable } from
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { fetchCategories } from '../../services/api';
 import type { ApiCategory } from '../../services/api';
+import { categories as bundledCategories } from '../../services/mockData';
 
 export default function ExploreScreen() {
   const [categories, setCategories] = useState<ApiCategory[]>([]);
@@ -16,6 +17,7 @@ export default function ExploreScreen() {
         setCategories(data);
       } catch (error) {
         console.warn('Failed to load categories', error);
+        setCategories(bundledCategories);
       } finally {
         setLoading(false);
       }

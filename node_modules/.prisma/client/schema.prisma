@@ -1,0 +1,167 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Category {
+  id          String      @id @default(cuid())
+  name        String
+  slug        String      @unique
+  description String
+  icon        String
+  isActive    Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  situations  Situation[]
+}
+
+model Situation {
+  id             String                  @id @default(cuid())
+  categoryId     String
+  category       Category                @relation(fields: [categoryId], references: [id])
+  title          String
+  slug           String                  @unique
+  description    String
+  searchKeywords String[]
+  isActive       Boolean                 @default(true)
+  createdAt      DateTime                @default(now())
+  updatedAt      DateTime                @updatedAt
+  legalSections  SituationLegalSection[]
+  explanations   Explanation[]
+  actions        Action[]
+  savedItems     SavedItem[]
+}
+
+enum SourceType {
+  CONSTITUTION
+  ACT
+  REGULATION
+  OFFICIAL_GUIDANCE
+  CASE
+}
+
+enum SourceStatus {
+  ACTIVE
+  UNDER_REVIEW
+  OUTDATED
+  ARCHIVED
+}
+
+model LegalSource {
+  id            String         @id @default(cuid())
+  title         String
+  sourceType    SourceType
+  officialUrl   String
+  version       String?
+  effectiveDate DateTime?
+  lastVerified  DateTime
+  status        SourceStatus   @default(ACTIVE)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  sections      LegalSection[]
+}
+
+model LegalSection {
+  id              String                  @id @default(cuid())
+  legalSourceId   String
+  legalSource     LegalSource             @relation(fields: [legalSourceId], references: [id])
+  reference       String
+  title           String
+  legalText       String
+  parentSectionId String?
+  parentSection   LegalSection?           @relation("SectionHierarchy", fields: [parentSectionId], references: [id])
+  childSections   LegalSection[]          @relation("SectionHierarchy")
+  keywords        String[]
+  createdAt       DateTime                @default(now())
+  updatedAt       DateTime                @updatedAt
+  situations      SituationLegalSection[]
+}
+
+model SituationLegalSection {
+  id             String       @id @default(cuid())
+  situationId    String
+  situation      Situation    @relation(fields: [situationId], references: [id])
+  legalSectionId String
+  legalSection   LegalSection @relation(fields: [legalSectionId], references: [id])
+  relevance      String?
+  priority       Int          @default(0)
+
+  @@unique([situationId, legalSectionId])
+}
+
+enum Language {
+  en
+  sw
+}
+
+enum ReviewStatus {
+  DRAFT
+  AI_GENERATED
+  HUMAN_REVIEWED
+  PUBLISHED
+  ARCHIVED
+}
+
+model Explanation {
+  id            String       @id @default(cuid())
+  situationId   String
+  situation     Situation    @relation(fields: [situationId], references: [id])
+  language      Language
+  summary       String
+  explanation   String
+  whatThisMeans String
+  limitations   String
+  generatedBy   String
+  reviewStatus  ReviewStatus @default(DRAFT)
+  reviewedAt    DateTime?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+
+  @@unique([situationId, language])
+}
+
+model Action {
+  id          String    @id @default(cuid())
+  situationId String
+  situation   Situation @relation(fields: [situationId], references: [id])
+  stepNumber  Int
+  title       String
+  description String
+  warning     String?
+}
+
+enum ResourceType {
+  LEGAL_AID
+  GOVERNMENT
+  NGO
+  HOTLINE
+  COURT
+}
+
+model Resource {
+  id          String       @id @default(cuid())
+  name        String
+  type        ResourceType
+  description String
+  website     String?
+  phone       String?
+  email       String?
+  address     String?
+  sourceUrl   String?
+  verifiedAt  DateTime?
+  isActive    Boolean      @default(true)
+}
+
+model SavedItem {
+  id          String    @id @default(cuid())
+  deviceId    String
+  situationId String
+  situation   Situation @relation(fields: [situationId], references: [id])
+  createdAt   DateTime  @default(now())
+
+  @@unique([deviceId, situationId])
+}
